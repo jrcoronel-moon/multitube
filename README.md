@@ -1,0 +1,52 @@
+# MultiTube
+
+MultiTube is a modern web application that allows you to watch up to 5 YouTube live streams simultaneously in a single, responsive interface.
+
+## Features
+
+- **Multi-Stream Viewing**: Watch 1 to 5 YouTube streams at once.
+- **Dynamic Layout**: The grid automatically adjusts based on the number of active streams.
+- **Favorites System**: Easily load your favorite streams from a configuration file.
+- **Premium UI**: Dark mode design with glassmorphism effects and smooth transitions.
+- **Responsive**: Works on various screen sizes.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jrcoronel-moon/multitube.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd multitube
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to the local URL (usually `http://localhost:5173`).
+
+## Usage
+
+1. **Add a Stream**: Paste a YouTube video or stream URL into the input field and click "Add Stream".
+2. **Remove a Stream**: Hover over a video and click the "Remove" button.
+3. **Load Favorites**: Create a `favorites.txt` file in the `public` folder with one URL per line. Click "Load Favorites" to add them instantly.
+
+## License
+
+MIT
