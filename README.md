@@ -2,6 +2,8 @@
 
 MultiTube is a modern web application that allows you to watch up to 5 YouTube live streams simultaneously in a single, responsive interface.
 
+![MultiTube Preview](assets/multitube_preview.png)
+
 ## Features
 
 - **Multi-Stream Viewing**: Watch 1 to 5 YouTube streams at once.
