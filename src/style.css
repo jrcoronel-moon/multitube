@@ -35,6 +35,11 @@ header {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--glass-border);
   z-index: 10;
+  gap: 1rem;
+}
+
+.header-actions {
+  margin-left: auto;
 }
 
 h1 {
@@ -42,6 +47,7 @@ h1 {
   font-size: 1.5rem;
   font-weight: 700;
   background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -97,6 +103,19 @@ button:active {
 
 .secondary-btn:hover {
   background: rgba(59, 130, 246, 0.1);
+}
+
+.danger-btn {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid #dc2626;
+  color: #ef4444;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.danger-btn:hover {
+  background: #dc2626;
+  color: white;
 }
 
 main {

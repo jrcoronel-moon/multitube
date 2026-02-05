@@ -120,8 +120,27 @@ async function loadFavorites() {
   }
 }
 
+async function quitApp() {
+  if (!confirm('Are you sure you want to quit MultiTube?')) return;
+
+  try {
+    const response = await fetch('/api/shutdown', { method: 'POST' });
+    if (response.ok) {
+      document.body.innerHTML = `
+            <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0f172a;color:#fff;font-family:sans-serif;">
+                <h1>App Closed. You can close this tab.</h1>
+            </div>
+        `;
+      window.close(); // Try to close tab if allowed
+    }
+  } catch (error) {
+    console.error('Error shutting down:', error);
+  }
+}
+
 addBtn.addEventListener('click', addStream);
 document.getElementById('favBtn').addEventListener('click', loadFavorites);
+document.getElementById('quitBtn').addEventListener('click', quitApp);
 
 urlInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') addStream();

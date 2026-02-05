@@ -41,7 +41,12 @@ Start the development server:
 npm run dev
 ```
 
-Open your browser and navigate to the local URL (usually `http://localhost:5173`).
+### Run as App
+
+To Run:
+Double-click **MultiTube.app**. It should open `http://localhost:3999` in your browser.
+
+(If port 3999 was busy, please ensure it's free now, or the app might fail to bind to it).
 
 ## Usage
 

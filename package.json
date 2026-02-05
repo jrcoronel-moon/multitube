@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "open": "^11.0.0"
   }
 }
