@@ -41,10 +41,16 @@ Start the development server:
 npm run dev
 ```
 
-### Run as App
-
+### MacOS App
 To Run:
 Double-click **MultiTube.app**. It should open `http://localhost:3999` in your browser.
+
+### Windows App
+To Run:
+Double-click **start_windows.bat**.
+1. It will start the server and open your default browser.
+2. A command prompt window will stay open (this is the server).
+3. Clicking "Quit App" in the browser will close this window automatically.
 
 (If port 3999 was busy, please ensure it's free now, or the app might fail to bind to it).
 
