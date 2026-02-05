@@ -48,6 +48,18 @@ Double-click **MultiTube.app**. It should open `http://localhost:3999` in your b
 
 (If port 3999 was busy, please ensure it's free now, or the app might fail to bind to it).
 
+## Troubleshooting
+
+### "App is damaged and can't be opened"
+If you move this app to another Mac, you might see an error saying the app is damaged. This is because the app is not digitally signed by Apple. To fix this:
+
+1. Open Terminal.
+2. Run the following command:
+   ```bash
+   xattr -cr /path/to/MultiTube.app
+   ```
+   (Tip: You can type `xattr -cr ` and then drag the app from Finder into the terminal window).
+
 ## Usage
 
 1. **Add a Stream**: Paste a YouTube video or stream URL into the input field and click "Add Stream".
