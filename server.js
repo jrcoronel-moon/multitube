@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3999;
 
+// Serve favorites.txt from public/ (live, no build needed)
+app.use('/favorites.txt', express.static(path.join(__dirname, 'public', 'favorites.txt')));
+
 // Serve static files from dist
 app.use(express.static(path.join(__dirname, 'dist')));
 

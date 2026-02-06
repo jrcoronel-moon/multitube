@@ -21,7 +21,7 @@ function render() {
     videoGrid.innerHTML = `
       <div class="empty-state">
         <p>No streams active. Add a YouTube URL above to start watching.</p>
-        <p style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.7;">Supports up to 5 concurrent streams.</p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.7;">Supports up to 9 concurrent streams.</p>
       </div>
     `;
     return;
@@ -68,8 +68,8 @@ function addStream() {
     return;
   }
 
-  if (streams.length >= 5) {
-    alert('Maximum 5 streams allowed');
+  if (streams.length >= 9) {
+    alert('Maximum 9 streams allowed');
     return;
   }
 
@@ -99,7 +99,7 @@ async function loadFavorites() {
     let addedCount = 0;
 
     specificUrls.forEach(url => {
-      if (streams.length >= 5) return;
+      if (streams.length >= 9) return;
       const id = getYouTubeID(url);
       if (id && !streams.includes(id)) {
         streams.push(id);
@@ -109,7 +109,7 @@ async function loadFavorites() {
 
     if (addedCount > 0) {
       render();
-    } else if (streams.length >= 5) {
+    } else if (streams.length >= 9) {
       alert('Maximum streams reached, cannot add favorites.');
     } else {
       alert('No new valid streams found in favorites.');

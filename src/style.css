@@ -380,14 +380,61 @@ main.grid-5 .video-container:nth-child(5) {
   grid-column: 4 / span 2;
 }
 
-/* Correction for grid-5 logic above:
-   Row 1: 3 items (span 2 each of 6 cols) -> 2+2+2 = 6. Correct.
-   Row 2: 2 items. To center them:
-     - Item 4 starts at col 2, spans 2 (occupies cols 2,3).
-     - Item 5 starts at col 4, spans 2 (occupies cols 4,5).
-     - Total 6 cols.
-     - Gap handling might be tricky with spans, but CSS Grid handles it well usually.
-*/
+/* 6: 3x2 */
+main.grid-6 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+/* 7: 3 top, 2 mid, 2 bottom centered via 6-col grid */
+main.grid-7 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+main.grid-7 .video-container:nth-child(-n+3) {
+  grid-column: span 2;
+}
+
+main.grid-7 .video-container:nth-child(4) {
+  grid-column: span 2;
+}
+
+main.grid-7 .video-container:nth-child(5) {
+  grid-column: span 2;
+}
+
+main.grid-7 .video-container:nth-child(6) {
+  grid-column: 2 / span 2;
+}
+
+main.grid-7 .video-container:nth-child(7) {
+  grid-column: 4 / span 2;
+}
+
+/* 8: 3 top, 3 mid, 2 bottom centered */
+main.grid-8 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+main.grid-8 .video-container:nth-child(-n+6) {
+  grid-column: span 2;
+}
+
+main.grid-8 .video-container:nth-child(7) {
+  grid-column: 2 / span 2;
+}
+
+main.grid-8 .video-container:nth-child(8) {
+  grid-column: 4 / span 2;
+}
+
+/* 9: 3x3 */
+main.grid-9 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
 
 @media (max-width: 768px) {
 
@@ -395,12 +442,18 @@ main.grid-5 .video-container:nth-child(5) {
   main.grid-2,
   main.grid-3,
   main.grid-4,
-  main.grid-5 {
+  main.grid-5,
+  main.grid-6,
+  main.grid-7,
+  main.grid-8,
+  main.grid-9 {
     grid-template-columns: 1fr;
     grid-template-areas: initial;
   }
 
-  main.grid-5 .video-container {
+  main.grid-5 .video-container,
+  main.grid-7 .video-container,
+  main.grid-8 .video-container {
     grid-column: auto !important;
   }
 }
