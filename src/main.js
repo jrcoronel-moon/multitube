@@ -46,7 +46,8 @@ function render() {
 
     const removeBtn = document.createElement('button');
     removeBtn.className = 'remove-btn';
-    removeBtn.textContent = 'Remove';
+    removeBtn.title = 'Remove';
+    removeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
     removeBtn.onclick = () => removeStream(index);
 
     controls.appendChild(removeBtn);
@@ -138,8 +139,94 @@ async function quitApp() {
   }
 }
 
+function castScreen() {
+  if (streams.length === 0) {
+    showToast('No streams to cast.');
+    return;
+  }
+
+  // Show video picker overlay
+  let overlay = document.getElementById('cast-overlay');
+  if (overlay) {
+    overlay.remove();
+    return;
+  }
+
+  overlay = document.createElement('div');
+  overlay.id = 'cast-overlay';
+
+  const title = document.createElement('p');
+  title.className = 'cast-title';
+  title.textContent = 'Select a stream to cast:';
+  overlay.appendChild(title);
+
+  const grid = document.createElement('div');
+  grid.className = 'cast-grid';
+
+  streams.forEach((id, index) => {
+    const item = document.createElement('div');
+    item.className = 'cast-item';
+    item.onclick = () => castVideo(id);
+
+    const thumb = document.createElement('img');
+    thumb.src = `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+    thumb.alt = `Stream ${index + 1}`;
+
+    const label = document.createElement('span');
+    label.textContent = `Stream ${index + 1}`;
+
+    item.appendChild(thumb);
+    item.appendChild(label);
+    grid.appendChild(item);
+  });
+
+  overlay.appendChild(grid);
+
+  // Close on click outside
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+
+  document.body.appendChild(overlay);
+}
+
+function castVideo(videoId) {
+  // Remove picker
+  const overlay = document.getElementById('cast-overlay');
+  if (overlay) overlay.remove();
+
+  const url = `https://www.youtube.com/watch?v=${videoId}`;
+
+  if ('PresentationRequest' in window) {
+    const request = new PresentationRequest([url]);
+    request.start()
+      .then(conn => console.log('Casting to:', conn.id))
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          console.error('Cast error:', err);
+          showToast('Cast failed. Try right-click > "Cast..."');
+        }
+      });
+  } else {
+    showToast('Cast not supported in this browser.');
+  }
+}
+
+function showToast(message) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 5000);
+}
+
 addBtn.addEventListener('click', addStream);
 document.getElementById('favBtn').addEventListener('click', loadFavorites);
+document.getElementById('castBtn').addEventListener('click', castScreen);
 document.getElementById('quitBtn').addEventListener('click', quitApp);
 
 urlInput.addEventListener('keypress', (e) => {
